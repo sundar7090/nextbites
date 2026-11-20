@@ -1,44 +1,91 @@
-import Image from "next/image";
+import RecipeCard from "./components/RecipeCard";
+import { recipes } from "./data/recipes";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+    <main id="top">
+      <section className="hero page-shell" aria-labelledby="hero-title">
+        <div className="hero-copy">
+          <p className="eyebrow">
+            <span className="eyebrow-star" aria-hidden="true">
+              ✳
+            </span>
+            YOUR NEXT FAVORITE MEAL STARTS HERE
+          </p>
+          <h1 id="hero-title">
+            Find your
+            <br />
+            next <span className="headline-accent">bite.</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="hero-description">
+            Little ideas for the meals you&apos;ll remember. Pick a recipe,
+            grab what you need, and make something good.
+          </p>
+          <a className="primary-button" href="#recipes">
+            Explore recipes <span aria-hidden="true">↓</span>
+          </a>
+          <p className="hero-note">
+            <span className="note-avatars" aria-hidden="true">
+              <span>🥑</span>
+              <span>🍓</span>
+              <span>🍋</span>
+            </span>
+            <span>Made for curious home cooks</span>
           </p>
         </div>
-      </main>
-    </div>
+
+        <div className="hero-art" aria-label="A bowl of fresh, colorful food">
+          <div className="hero-art-ring" />
+          <span className="hero-sparkle hero-sparkle-one" aria-hidden="true">
+            ✳
+          </span>
+          <span className="hero-sparkle hero-sparkle-two" aria-hidden="true">
+            ✦
+          </span>
+          <div className="hero-food" aria-hidden="true">
+            🥗
+          </div>
+          <div className="hero-sticker">
+            <span className="sticker-star" aria-hidden="true">
+              ✳
+            </span>
+            <span>GOOD FOOD</span>
+            <span>GOOD MOOD</span>
+          </div>
+          <div className="hero-caption">
+            <span className="caption-dot" />
+            Fresh ideas, every day
+          </div>
+        </div>
+      </section>
+
+      <section className="recipe-section page-shell" id="recipes">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow section-eyebrow">A LITTLE INSPIRATION</p>
+            <h2>On the menu<span className="headline-accent">.</span></h2>
+          </div>
+          <p className="section-description">
+            Simple, feel-good recipes for whatever you&apos;re craving.
+          </p>
+        </div>
+
+        <div className="recipe-grid">
+          {recipes.map((recipe) => (
+            <RecipeCard key={recipe.id} recipe={recipe} />
+          ))}
+        </div>
+      </section>
+
+      <footer className="site-footer page-shell" id="about">
+        <p className="footer-brand">
+          next<span className="brand-accent">bites</span>
+        </p>
+        <p>A little inspiration for your everyday table.</p>
+        <a href="#top" aria-label="Back to top">
+          Back to top ↑
+        </a>
+      </footer>
+    </main>
   );
 }
